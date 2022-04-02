@@ -1,11 +1,12 @@
 fileFormatVersion: 2
-guid: b7073ddc2e1e31c44a3fad026ff9fa3a
+guid: 5b0748a9dc5e0aa49847fbe133e52eb5
 labels:
 - GalacticStudios
-timeCreated: 1522475691
+timeCreated: 1522350233
 licenseType: Store
-DefaultImporter:
+ShaderImporter:
   externalObjects: {}
+  defaultTextures: []
   userData: 
   assetBundleName: 
   assetBundleVariant: 

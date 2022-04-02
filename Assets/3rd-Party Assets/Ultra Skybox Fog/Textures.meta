@@ -1,10 +1,12 @@
 fileFormatVersion: 2
-guid: 62b6ac7df161f604b89e1e2ff087190e
+guid: a095e30a08fd8af4092b1f326f2bd8b3
 labels:
 - GalacticStudios
-timeCreated: 1523735499
+folderAsset: yes
+timeCreated: 1522350273
 licenseType: Store
-NativeFormatImporter:
+DefaultImporter:
+  externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
