@@ -4,20 +4,28 @@ using UnityEngine;
 
 public class PortalScript : MonoBehaviour
 {
+    public const string PLAYER_TAG = "Player";
+    public GameObject homeDoorway;
+    private DoorScript homeDoorScript;
 
-    public GameObject doorway;
-    private DoorScript doorScript;
+    public GameObject targetDoorway;
+    private DoorScript targetDoorScript;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        doorScript = doorway.GetComponent<DoorScript>();
+        homeDoorScript = homeDoorway.GetComponent<DoorScript>();
+        targetDoorScript = targetDoorway.GetComponent<DoorScript>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
+    private void OnTriggerEnter(Collider other) {
+        // Trying to teleport
+        if(other.tag == PLAYER_TAG){ // Will only teleport player, for now
+            if(targetDoorScript.getIsOpened()){ // Cannot teleport when target door is closed
+                other.transform.position = targetDoorway.transform.position; // For now, have arrival location = doorway location (which is on the floor)
+            }
+        }
     }
 }
