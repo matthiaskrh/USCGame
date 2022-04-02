@@ -16,7 +16,14 @@ public class EnemyAI : MonoBehaviour
 
     // Stalking
     public float sightRange;
-    bool playerInRange;
+    bool inPlayerPursuit;
+
+    // Attacking
+    public float attackSpeed, attackRange;
+    public bool playerInAttackRange;
+
+    // Teleporting
+    public bool canTeleport;
 
     // Called to initialize variables before game start.
     private void Awake()
@@ -34,9 +41,9 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         playerTransform = GameObject.Find("First Person Controller").transform;
-        playerInRange = Physics.CheckSphere(transform.position, sightRange, playerMask);
+        inPlayerPursuit = Physics.CheckSphere(transform.position, sightRange, playerMask);
 
-        if (playerInRange)
+        if (inPlayerPursuit)
         {
             Debug.Log("Chasing Player");
             ChasePlayer();
