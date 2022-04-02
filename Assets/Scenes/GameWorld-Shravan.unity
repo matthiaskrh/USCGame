@@ -464,7 +464,8 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 64
-  patrolPointRange: 5
+  patrolPointRange: 50
+  patrolPointSet: 0
   sightRange: 20
   attackSpeed: 0
   attackRange: 0

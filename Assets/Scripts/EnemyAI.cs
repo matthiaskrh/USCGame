@@ -12,7 +12,7 @@ public class EnemyAI : MonoBehaviour
     // Patrolling
     Vector3 patrolPoint;
     public float patrolPointRange;
-    bool patrolPointSet;
+    public bool patrolPointSet;
 
     // Stalking
     public float sightRange;
@@ -54,12 +54,14 @@ public class EnemyAI : MonoBehaviour
 
     void FindPatrolPoint()
     {
-        float randZ = Random.Range(-patrolPointRange, patrolPointRange);
-        float randX = Random.Range(-patrolPointRange, patrolPointRange);
+        Vector3 randPositionOffset = Random.insideUnitSphere * patrolPointRange;
+        Vector3 point = transform.position + randPositionOffset;
+        NavMeshHit hit;
 
-        patrolPoint = new Vector3(transform.position.x + randX, transform.position.y, transform.position.z + randZ);
+        NavMesh.SamplePosition(point, out hit, patrolPointRange, NavMesh.AllAreas);
+        patrolPoint = hit.position;
 
-        if (Physics.Raycast(patrolPoint, -transform.up, 2f, groundMask))
+        if (Physics.Raycast(patrolPoint, -transform.up, 2f, 1))
             patrolPointSet = true;
     }
 
@@ -73,9 +75,8 @@ public class EnemyAI : MonoBehaviour
 
         float distanceToDestination = (transform.position - patrolPoint).magnitude;
 
-        if (distanceToDestination < 1f)
+        if (distanceToDestination <= 2f)
             patrolPointSet = false;
-
     }
 
     void ChasePlayer()
