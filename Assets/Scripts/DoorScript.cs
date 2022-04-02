@@ -13,19 +13,57 @@ public class DoorScript : MonoBehaviour
 
     private bool isOpened = false;
 
-    void Start(){
+    public PlayerState playerState;
+    public bool unhinged = false;
+    public float disableTime = 5.0f;
+    public float elapsedDisableTime = 0.0f;
+    public bool isDisabling = false;
+
+    void Start()
+    {
         triggerFlag = interactSphere.GetComponent<TriggerFlag>();
+        elapsedDisableTime = 0.0f;
     }
+
     void Update()
     {
         bool canInteract = triggerFlag.getFlag();
-        if(Input.GetKeyDown(KeyCode.E) && canInteract){
-            if(isOpened){
+        if (Input.GetKeyDown(KeyCode.E) && canInteract && !unhinged)
+        {
+            if (isOpened)
+            {
                 CloseDoor();
-            } else {
+            }
+            else
+            {
                 OpenDoor();
             }
         }
+
+        else if (Input.GetKeyDown(KeyCode.T) && canInteract && !unhinged && playerState.hasScrewdriver &&
+                 !isOpened)
+        {
+            isDisabling = true;
+        }
+
+        if (Input.GetKeyUp(KeyCode.T) && isDisabling)
+        {
+            isDisabling = false;
+        }
+
+        if (isDisabling)
+        {
+            if (elapsedDisableTime > disableTime)
+            {
+                unhinged = true;
+                isDisabling = false;
+                elapsedDisableTime = 0.0f;
+            }
+            else
+                elapsedDisableTime += Time.deltaTime;
+        }
+        else
+            elapsedDisableTime = 0.0f;
     }
 
     public bool getIsOpened(){
