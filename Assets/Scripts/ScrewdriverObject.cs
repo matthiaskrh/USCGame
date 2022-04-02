@@ -6,7 +6,7 @@ public class ScrewdriverObject : MonoBehaviour
 {
     public const string PLAYER_TAG = "Player";
     public bool claimable;
-    public Renderer renderer;
+    private Renderer renderer;
     public PlayerState playerState;
 
     // Start is called before the first frame update
