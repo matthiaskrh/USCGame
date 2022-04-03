@@ -18,13 +18,20 @@ public class MetalDetector : MonoBehaviour
     public GameObject offObject;
     private AudioSource offAudioSource;
 
+    public float forceOnDistance; // Distance for monster to be within to force ON of metal detector;
+
     public float maxVolume; // Highest volume for beeping
     public float maxDist; // Maximum distance (of closest screwdriver) to record sound
+
+    public float maxPitchDist; // Maximum distance for pitch (should be less than max volume dist)
+
+    public bool isOn;
     void Start()
     {
         beepAudioSource = beepObject.GetComponent<AudioSource>();
         onAudioSource = onObject.GetComponent<AudioSource>();
         offAudioSource = offObject.GetComponent<AudioSource>();
+        TurnOn(); // Start with on, put first door near player
     }
 
     // Update is called once per frame
@@ -33,12 +40,9 @@ public class MetalDetector : MonoBehaviour
         // Toggle on/off
         if(Input.GetKeyDown(KeyCode.X)){
             if(beepAudioSource.mute){
-                beepAudioSource.mute = false;
-
-                onAudioSource.Play();
+                TurnOn();
             } else {
-                beepAudioSource.mute = true;
-                offAudioSource.Play();
+                TurnOff();
             }
         }
 
@@ -63,10 +67,31 @@ public class MetalDetector : MonoBehaviour
             if(Vector3.Distance(s.transform.position, transform.position) < minDist){
                 minDist = Vector3.Distance(s.transform.position, transform.position);
             }
+
+            // Check if force on
+            if(Vector3.Distance(s.transform.position, transform.position) < forceOnDistance){
+                if(!isOn){
+                    TurnOn();
+                }
+            }
         }
 
         float ratio = (maxDist - minDist) / maxDist;
+        float pitchRatio = (maxPitchDist - Mathf.Min(maxPitchDist, minDist)) / maxPitchDist;
         beepAudioSource.volume = (ratio * ratio) * maxVolume; // Square to not have full volume all the time
+        beepAudioSource.pitch = 1 + (pitchRatio * pitchRatio) * 2; // Range from 1 to 3
         
+    }
+
+    public void TurnOff(){
+        isOn = false;
+        beepAudioSource.mute = true;
+        offAudioSource.Play();
+    }
+
+    public void TurnOn(){
+        isOn = true;
+        beepAudioSource.mute = false;
+        onAudioSource.Play();
     }
 }

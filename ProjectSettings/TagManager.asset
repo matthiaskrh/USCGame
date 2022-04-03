@@ -8,6 +8,10 @@ TagManager:
   - Overworld
   - Underworld
   - Enemy
+  - Door
+  - Monster
+  - Portal Camera
+  - Music Source
   layers:
   - Default
   - TransparentFX
