@@ -5,6 +5,7 @@ using UnityEngine;
 public class DoorScript : MonoBehaviour
 {
 
+    public GameObject destinationObject;
     public GameObject interactSphere;
     private TriggerFlag triggerFlag;
     public GameObject pivot;
@@ -68,6 +69,10 @@ public class DoorScript : MonoBehaviour
 
     public bool getIsOpened(){
         return isOpened;
+    }
+
+    public bool getIsUnhinged(){
+        return unhinged;
     }
 
     void OpenDoor(){

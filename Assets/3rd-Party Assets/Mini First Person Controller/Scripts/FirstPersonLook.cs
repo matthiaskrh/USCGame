@@ -39,12 +39,14 @@ public class FirstPersonLook : MonoBehaviour
         velocity.y = Mathf.Clamp(velocity.y, -90, 90);
 
         // Rotate camera up-down and controller left-right from velocity.
-        transform.localRotation = Quaternion.AngleAxis(-velocity.y, Vector3.right);
-        character.localRotation = Quaternion.AngleAxis(velocity.x, Vector3.up);
+        //transform.localRotation = Quaternion.AngleAxis(-velocity.y, Vector3.right);
+        //character.localRotation = Quaternion.AngleAxis(velocity.x, Vector3.up);
+
+        transform.RotateAroundLocal(Vector3.right, -mouseDelta.y * Time.fixedDeltaTime);
+        character.transform.RotateAroundLocal(Vector3.up, mouseDelta.x * Time.fixedDeltaTime);
 
 
         // Bob head
-        
         if(cycle > 2*Mathf.PI){
             cycle = 0;
         }
