@@ -36,6 +36,8 @@ public class Portal : MonoBehaviour
 
     private void Start()
     {
+        outlineRenderer.enabled = false;
+        // renderer.enabled = false;
         PlacePortal(wallCollider, transform.position, transform.rotation);
         SetColour(portalColour);
     }
@@ -84,6 +86,10 @@ public class Portal : MonoBehaviour
         return renderer.isVisible;
     }
 
+    public void setEnable(bool isEnabled){
+        renderer.enabled = isEnabled;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         var obj = other.GetComponent<PortalableObject>();
@@ -112,8 +118,8 @@ public class Portal : MonoBehaviour
         transform.rotation = rot;
         transform.position -= transform.forward * 0.001f;
 
-        FixOverhangs();
-        FixIntersects();
+        // FixOverhangs();
+        // FixIntersects();
     }
 
     // Ensure the portal cannot extend past the edge of a surface.

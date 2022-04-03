@@ -34,6 +34,22 @@ public class BasicPortalCamera : MonoBehaviour
         portals[1].SetMaskID(maskID2);
     }
 
+    public void setPortals(Portal prt0, Portal prt1){
+        portals[0].SetMaskID(1);
+        portals[1].SetMaskID(1);
+
+        portals[0] = prt0;
+        portals[1] = prt1;
+        portals[0].SetMaskID(maskID1);
+        portals[1].SetMaskID(maskID2);
+
+    }
+
+    public void setPortalsEnable(bool isEnabled){
+        portals[0].setEnable(isEnabled);
+        portals[1].setEnable(isEnabled);
+    }
+
     private void OnRenderImage(RenderTexture src, RenderTexture dst)
     {
         if (!portals[0].IsPlaced() || !portals[1].IsPlaced())
