@@ -221,7 +221,11 @@ GameObject:
   - component: {fileID: 5875355837092149883}
   - component: {fileID: 5875355837092149882}
   - component: {fileID: 5875355837092149885}
+<<<<<<< HEAD
+  - component: {fileID: 7663259178361845966}
+=======
   - component: {fileID: 8248855750720713775}
+>>>>>>> d7f5cefc4ee2122257e9f48dbbf2914e50a1ddd3
   m_Layer: 0
   m_Name: InteractSphere
   m_TagString: Untagged
@@ -269,7 +273,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c15077f959a911408341ce48e5fd921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+--- !u!114 &7663259178361845966
+=======
 --- !u!114 &8248855750720713775
+>>>>>>> d7f5cefc4ee2122257e9f48dbbf2914e50a1ddd3
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
