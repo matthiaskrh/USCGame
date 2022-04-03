@@ -6,16 +6,21 @@ public class PlayerState : MonoBehaviour
 {
     public bool hasScrewdriver;
 
+    public bool isInOverworld;
+    public GameObject overworldTriggerBox;
+    private TriggerFlag overworldTriggerFlag;
+
     // Start is called before the first frame update
     void Start()
     {
         hasScrewdriver = false;
+        overworldTriggerFlag = overworldTriggerBox.GetComponent<TriggerFlag>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        isInOverworld = overworldTriggerFlag.getFlag();
     }
 
     public void AddScrewdriver()

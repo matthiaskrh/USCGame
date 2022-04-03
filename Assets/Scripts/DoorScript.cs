@@ -8,6 +8,7 @@ public class DoorScript : MonoBehaviour
     public GameObject destinationObject;
     public GameObject interactSphere;
     private TriggerFlag triggerFlag;
+    private EnemyTriggerFlag enemyTriggerFlag;
     public GameObject pivot;
     public float openedAngle = -90;
     public float closedAngle = 0;
@@ -23,12 +24,21 @@ public class DoorScript : MonoBehaviour
     void Start()
     {
         triggerFlag = interactSphere.GetComponent<TriggerFlag>();
+        enemyTriggerFlag = interactSphere.GetComponent<EnemyTriggerFlag>();
         elapsedDisableTime = 0.0f;
     }
 
     void Update()
     {
         bool canInteract = triggerFlag.getFlag();
+        bool enemyCanInteract = triggerFlag.getFlag();
+
+        if (enemyCanInteract && !unhinged)
+        {
+            if (!isOpened)
+                OpenDoor();
+        }
+
         if (Input.GetKeyDown(KeyCode.E) && canInteract && !unhinged)
         {
             if (isOpened)

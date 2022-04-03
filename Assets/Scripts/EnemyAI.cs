@@ -9,8 +9,17 @@ public class EnemyAI : MonoBehaviour
     public Rigidbody rb;
     public NavMeshAgent agent;
     public Transform playerTransform;
+    public PlayerState playerState;
     public LayerMask groundMask, playerMask;
     public float patrolSpeed = 3.0f, pursuitSpeed = 4.0f, attackSpeed = 8.0f;
+
+    public bool isInOverworld;
+    public GameObject overworldTriggerBox;
+    private TriggerFlag overworldTriggerFlag;
+
+    // Doors
+    public Transform[] overworldDoorTransforms;
+    public Transform[] underworldDoorTransforms;
 
     // Patrolling
     public Vector3 patrolPoint;
@@ -47,11 +56,13 @@ public class EnemyAI : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         teleportIntervalElapsed = 0.0f;
         isAttacking = false;
+        overworldTriggerFlag = overworldTriggerBox.GetComponent<TriggerFlag>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        isInOverworld = overworldTriggerFlag.getFlag();
         playerTransform = GameObject.Find("First Person Controller").transform;
 
         isPlayerDead = Vector3.Distance(transform.position, playerTransform.position) < 2.0f;
@@ -77,17 +88,67 @@ public class EnemyAI : MonoBehaviour
             patrolPointSet = false;
             Attack();
         }
-        else if (inPlayerPursuit)
+        else if (playerState && (playerState.isInOverworld && !isInOverworld))
+        {
+            GoThroughClosestUnderworldDoor();
+        }
+        else if (playerState && (!playerState.isInOverworld && isInOverworld))
+        {
+            GoThroughClosestOverworldDoor();
+        }
+        else
         {
             patrolPointSet = false;
             ChasePlayer();
         }
+        /*
         else
         {
             if (canTeleport && !patrolPointSet && (teleportTransforms.Length > 0))
                 Teleport();
             else
                 Patrol();
+        }
+        */
+    }
+
+    void GoThroughClosestOverworldDoor()
+    {
+        if (overworldDoorTransforms.Length > 0)
+        {
+            Transform closestDoorTransform = overworldDoorTransforms[0];
+            float closestDist = Vector3.Distance(closestDoorTransform.position, transform.position);
+            for (int i = 1; i < overworldDoorTransforms.Length; i++)
+            {
+                float dist = Vector3.Distance(overworldDoorTransforms[i].position, transform.position);
+                if (dist < closestDist)
+                {
+                    closestDist = dist;
+                    closestDoorTransform = overworldDoorTransforms[i];
+                }
+            }
+
+            agent.SetDestination(closestDoorTransform.position);
+        }
+    }
+
+    void GoThroughClosestUnderworldDoor()
+    {
+        if (underworldDoorTransforms.Length > 0)
+        {
+            Transform closestDoorTransform = underworldDoorTransforms[0];
+            float closestDist = Vector3.Distance(closestDoorTransform.position, transform.position);
+            for (int i = 1; i < underworldDoorTransforms.Length; i++)
+            {
+                float dist = Vector3.Distance(underworldDoorTransforms[i].position, transform.position);
+                if (dist < closestDist)
+                {
+                    closestDist = dist;
+                    closestDoorTransform = underworldDoorTransforms[i];
+                }
+            }
+
+            agent.SetDestination(closestDoorTransform.position);
         }
     }
 
