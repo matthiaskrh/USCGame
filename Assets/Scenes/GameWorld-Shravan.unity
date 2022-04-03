@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 57620176}
   m_Layer: 0
   m_Name: Underworld
-  m_TagString: Untagged
+  m_TagString: Underworld
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3096,7 +3096,7 @@ GameObject:
   - component: {fileID: 1143008082}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3132,6 +3132,7 @@ MonoBehaviour:
   - {fileID: 2032321554}
   - {fileID: 1858919438}
   underworldDoorTransforms: []
+  closestDoor: {fileID: 0}
   patrolPoint: {x: 0, y: 0, z: 0}
   patrolPointRange: 5
   patrolPointSet: 0
@@ -4619,7 +4620,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1858919437}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 301.11, y: 35.36, z: 219}
+  m_LocalPosition: {x: 310.03, y: 37.69, z: 219}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 397711316}
@@ -4785,6 +4786,11 @@ MonoBehaviour:
   hasScrewdriver: 0
   isInOverworld: 0
   overworldTriggerBox: {fileID: 704834385}
+  overworldDoorTransforms:
+  - {fileID: 2032321554}
+  - {fileID: 1858919438}
+  underworldDoorTransforms: []
+  closestDoor: {fileID: 0}
 --- !u!1 &2032321553
 GameObject:
   m_ObjectHideFlags: 0

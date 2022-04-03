@@ -20,6 +20,7 @@ public class EnemyAI : MonoBehaviour
     // Doors
     public Transform[] overworldDoorTransforms;
     public Transform[] underworldDoorTransforms;
+    public Transform closestDoor;
 
     // Patrolling
     public Vector3 patrolPoint;
@@ -62,8 +63,49 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isInOverworld = overworldTriggerFlag.getFlag();
+        if (overworldTriggerFlag)
+        {
+            isInOverworld = overworldTriggerFlag.getFlag();
+        }
+        
         playerTransform = GameObject.Find("First Person Controller").transform;
+
+        if (isInOverworld)
+        {
+            if (overworldDoorTransforms.Length > 0)
+            {
+                closestDoor = overworldDoorTransforms[0];
+                float closestDist = Vector3.Distance(closestDoor.position, transform.position);
+
+                for (int i = 0; i < overworldDoorTransforms.Length; i++)
+                {
+                    float dist = Vector3.Distance(overworldDoorTransforms[i].position, transform.position);
+                    if (dist < closestDist)
+                    {
+                        closestDist = dist;
+                        closestDoor = overworldDoorTransforms[i];
+                    }
+                }
+            }
+        }
+        else
+        {
+            if (underworldDoorTransforms.Length > 0)
+            {
+                closestDoor = underworldDoorTransforms[0];
+                float closestDist = Vector3.Distance(closestDoor.position, transform.position);
+
+                for (int i = 0; i < underworldDoorTransforms.Length; i++)
+                {
+                    float dist = Vector3.Distance(underworldDoorTransforms[i].position, transform.position);
+                    if (dist < closestDist)
+                    {
+                        closestDist = dist;
+                        closestDoor = underworldDoorTransforms[i];
+                    }
+                }
+            }
+        }
 
         isPlayerDead = Vector3.Distance(transform.position, playerTransform.position) < 2.0f;
         inPlayerPursuit = Physics.CheckSphere(transform.position, sightRange, playerMask);
@@ -88,13 +130,29 @@ public class EnemyAI : MonoBehaviour
             patrolPointSet = false;
             Attack();
         }
-        else if (playerState && (playerState.isInOverworld && !isInOverworld))
+        else if (playerState)
         {
-            GoThroughClosestUnderworldDoor();
-        }
-        else if (playerState && (!playerState.isInOverworld && isInOverworld))
-        {
-            GoThroughClosestOverworldDoor();
+            float playerDist = Vector3.Distance(transform.position, playerTransform.position);
+            float closestDoorDist = Vector3.Distance(transform.position, closestDoor.position);
+            float playerClosestDoorDist = Vector3.Distance(playerTransform.position, playerState.closestDoor.position);
+
+            if ((closestDoorDist + playerClosestDoorDist) < playerDist)
+            {
+                GoThroughClosestDoor();
+            }
+            else if (playerState.isInOverworld && !isInOverworld)
+            {
+                GoThroughClosestUnderworldDoor();
+            }
+            else if (!playerState.isInOverworld && isInOverworld)
+            {
+                GoThroughClosestOverworldDoor();
+            }
+            else
+            {
+                patrolPointSet = false;
+                ChasePlayer();
+            }
         }
         else
         {
@@ -110,6 +168,11 @@ public class EnemyAI : MonoBehaviour
                 Patrol();
         }
         */
+    }
+
+    void GoThroughClosestDoor()
+    {
+        agent.SetDestination(closestDoor.position);
     }
 
     void GoThroughClosestOverworldDoor()
