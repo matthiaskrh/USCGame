@@ -497,9 +497,19 @@ MonoBehaviour:
   patrolPointRange: 50
   patrolPointSet: 0
   sightRange: 20
-  attackSpeed: 0
-  attackRange: 0
+  attackLocation: {x: 0, y: 0, z: 0}
+  attackDirection: {x: 0, y: 0, z: 0}
+  attackSpeed: 6
+  attackRange: 5
+  attackTime: 3
+  attackTimeElapsed: 0
+  cooldownTime: 2
+  cooldownTimeElapsed: 0
   playerInAttackRange: 0
+  isAttacking: 0
+  isCoolingDown: 0
+  teleportInterval: 50
+  intervalTimeElapsed: 0
   canTeleport: 0
 --- !u!195 &1298932820
 NavMeshAgent:
