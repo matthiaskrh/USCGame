@@ -63,7 +63,11 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isInOverworld = overworldTriggerFlag.getFlag();
+        if (overworldTriggerFlag)
+        {
+            isInOverworld = overworldTriggerFlag.getFlag();
+        }
+        
         playerTransform = GameObject.Find("First Person Controller").transform;
 
         if (isInOverworld)
