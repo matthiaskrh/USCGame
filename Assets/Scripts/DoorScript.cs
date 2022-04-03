@@ -35,7 +35,7 @@ public class DoorScript : MonoBehaviour
     {
         // Opening and closing door functionality
         bool canInteract = triggerFlag.getFlag();
-        bool enemyCanInteract = triggerFlag.getFlag();
+        bool enemyCanInteract = enemyTriggerFlag.getFlag();
 
         if (enemyCanInteract && !isUnhinged)
         {
