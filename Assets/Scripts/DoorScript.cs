@@ -8,6 +8,7 @@ public class DoorScript : MonoBehaviour
     public GameObject destinationObject;
     public GameObject interactSphere;
     private TriggerFlag triggerFlag;
+    private EnemyTriggerFlag enemyTriggerFlag;
     public GameObject pivot;
     public float openedAngle = -90;
     public float closedAngle = 0;
@@ -26,6 +27,7 @@ public class DoorScript : MonoBehaviour
         playerState = GameObject.FindGameObjectWithTag(PLAYER_TAG).GetComponent<PlayerState>();
         triggerFlag = interactSphere.GetComponent<TriggerFlag>();
         doorCollider = doorColliderObject.GetComponent<MeshRenderer>();
+        enemyTriggerFlag = interactSphere.GetComponent<EnemyTriggerFlag>();
         OpenDoor(); // All doors start open
     }
 
@@ -33,6 +35,14 @@ public class DoorScript : MonoBehaviour
     {
         // Opening and closing door functionality
         bool canInteract = triggerFlag.getFlag();
+        bool enemyCanInteract = triggerFlag.getFlag();
+
+        if (enemyCanInteract && !isUnhinged)
+        {
+            if (!isOpened)
+                OpenDoor();
+        }
+
         if (Input.GetKeyDown(KeyCode.E) && canInteract && !isUnhinged)
         {
             if (isOpened)
@@ -49,8 +59,6 @@ public class DoorScript : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.R) && canInteract && !isUnhinged && playerState.hasScrewdriver){
             UnhingeDoor();
         }
-
-      
     }
 
     public bool getIsOpened(){
