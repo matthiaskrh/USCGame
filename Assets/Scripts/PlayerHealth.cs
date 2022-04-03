@@ -7,12 +7,15 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
     public const string MONSTER_TAG = "Monster";
-    public const string MAIN_SCENE_NAME = "Main Scene";
+    public const string MAIN_SCENE_NAME = "MainScene";
     public GameObject deathImage;
+
+    public GameObject deathSound;
 
     IEnumerator Death()
     {
         deathImage.GetComponent<Image>().enabled = true;
+        deathSound.GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene(MAIN_SCENE_NAME);
     }

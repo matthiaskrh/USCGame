@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/GameWorld-Shravan.unity
     guid: 9296087bd272f154abce566557e5ca3e
   - enabled: 1
-    path: Assets/Scenes/MainScene.unity
+    path: Assets/Scenes/WinTest.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
