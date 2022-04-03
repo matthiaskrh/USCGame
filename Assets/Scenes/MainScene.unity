@@ -262,7 +262,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 016e440a2ca56ed46a4cfca2dfc23bfa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2198,7 +2198,7 @@ MonoBehaviour:
   - {fileID: 5875355836408664986}
   - {fileID: 1646850115}
   portalCamera: {fileID: 373927572}
-  portalMaterial: {fileID: 0}
+  portalMaterial: {fileID: 2100000, guid: 43e16acbbe452424492a7fd777f63cff, type: 2}
 --- !u!1 &1773622631387195
 GameObject:
   m_ObjectHideFlags: 0
@@ -3026,15 +3026,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5875355837821164995, guid: 33345a75c20ef2b44b406f3b705eb725, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 290.2
+      value: 294.63
       objectReference: {fileID: 0}
     - target: {fileID: 5875355837821164995, guid: 33345a75c20ef2b44b406f3b705eb725, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 31.46
+      value: 35.28
       objectReference: {fileID: 0}
     - target: {fileID: 5875355837821164995, guid: 33345a75c20ef2b44b406f3b705eb725, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 194.8
+      value: 233.4
       objectReference: {fileID: 0}
     - target: {fileID: 5875355837821164995, guid: 33345a75c20ef2b44b406f3b705eb725, type: 3}
       propertyPath: m_LocalRotation.w
