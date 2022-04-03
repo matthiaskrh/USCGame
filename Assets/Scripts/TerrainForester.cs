@@ -23,7 +23,7 @@ public class TerrainForester : MonoBehaviour
 
     public GameObject parentForObjects;
     // Start is called before the first frame update
-    void Start()
+    public void makeForest()
     {
         terrain = terrainObject.GetComponent<Terrain>();
 
@@ -46,5 +46,11 @@ public class TerrainForester : MonoBehaviour
 
         // Baking navmesh again
         navMesh.GetComponent<NavMeshSurface>().BuildNavMesh();
+    }
+
+    public void clearForest(){
+        foreach (Transform child in parentForObjects.transform) {
+             GameObject.DestroyImmediate(child.gameObject);
+        }
     }
 }

@@ -6,6 +6,9 @@ public class MetalDetector : MonoBehaviour
 {
 
     public const string SCREWDRIVER_TAG = "Screwdriver";
+    public const string DOOR_TAG = "Door";
+
+    public const string MONSTER_TAG = "Monster";
     public GameObject beepObject;
     private AudioSource beepAudioSource;
 
@@ -43,6 +46,20 @@ public class MetalDetector : MonoBehaviour
         float minDist = maxDist;
         GameObject[] screwdrivers = GameObject.FindGameObjectsWithTag(SCREWDRIVER_TAG);
         foreach(GameObject s in screwdrivers){
+            if(Vector3.Distance(s.transform.position, transform.position) < minDist){
+                minDist = Vector3.Distance(s.transform.position, transform.position);
+            }
+        }
+
+        GameObject[] doors = GameObject.FindGameObjectsWithTag(DOOR_TAG);
+        foreach(GameObject s in doors){
+            if(Vector3.Distance(s.transform.position, transform.position) < minDist){
+                minDist = Vector3.Distance(s.transform.position, transform.position);
+            }
+        }
+
+        GameObject[] monsters = GameObject.FindGameObjectsWithTag(MONSTER_TAG);
+        foreach(GameObject s in monsters){
             if(Vector3.Distance(s.transform.position, transform.position) < minDist){
                 minDist = Vector3.Distance(s.transform.position, transform.position);
             }

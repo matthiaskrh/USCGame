@@ -26,6 +26,7 @@ public class DoorScript : MonoBehaviour
         triggerFlag = interactSphere.GetComponent<TriggerFlag>();
         enemyTriggerFlag = interactSphere.GetComponent<EnemyTriggerFlag>();
         elapsedDisableTime = 0.0f;
+        OpenDoor(); // All doors start open
     }
 
     void Update()
