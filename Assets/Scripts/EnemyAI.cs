@@ -12,7 +12,7 @@ public class EnemyAI : MonoBehaviour
     public float patrolSpeed = 3.0f, pursuitSpeed = 4.0f, attackSpeed = 8.0f;
 
     // Patrolling
-    Vector3 patrolPoint;
+    public Vector3 patrolPoint;
     public float patrolPointRange;
     public bool patrolPointSet;
 
@@ -26,7 +26,8 @@ public class EnemyAI : MonoBehaviour
     public bool playerInAttackRange, isAttacking;
 
     // Teleporting
-    public float teleportInterval = 50.0f, intervalTimeElapsed;
+    public Transform[] teleportTransforms;
+    public float teleportInterval = 50.0f, teleportIntervalElapsed = 0.0f;
     public bool canTeleport;
 
     // Called to initialize variables before game start.
@@ -39,7 +40,7 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        intervalTimeElapsed = 0.0f;
+        teleportIntervalElapsed = 0.0f;
         isAttacking = false;
     }
 
@@ -50,12 +51,34 @@ public class EnemyAI : MonoBehaviour
         inPlayerPursuit = Physics.CheckSphere(transform.position, sightRange, playerMask);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerMask);
 
+        if (!canTeleport)
+        {
+            teleportIntervalElapsed += Time.deltaTime;
+
+            if (teleportIntervalElapsed > teleportInterval)
+            {
+                canTeleport = true;
+                teleportIntervalElapsed = 0.0f;
+            }
+        }    
+
         if (playerInAttackRange || isAttacking)
+        {
+            patrolPointSet = false;
             Attack();
+        }
         else if (inPlayerPursuit)
+        {
+            patrolPointSet = false;
             ChasePlayer();
+        }
         else
-            Patrol();
+        {
+            if (canTeleport && !patrolPointSet && (teleportTransforms.Length > 0))
+                Teleport();
+            else
+                Patrol();
+        }
     }
 
     void FindPatrolPoint()
@@ -69,6 +92,19 @@ public class EnemyAI : MonoBehaviour
 
         if (Physics.Raycast(patrolPoint, -transform.up, 2f, 1))
             patrolPointSet = true;
+    }
+
+    void Teleport()
+    {
+        int idx = Random.Range(0, teleportTransforms.Length);
+        Vector3 teleportLocation = teleportTransforms[idx].position;
+        NavMeshHit hit;
+
+        NavMesh.SamplePosition(teleportLocation, out hit, 20.0f, NavMesh.AllAreas);
+        Vector3 teleportPoint = hit.position;
+
+        transform.position = teleportPoint;
+        canTeleport = false;
     }
 
     void Patrol()
