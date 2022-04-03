@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -30,6 +31,10 @@ public class EnemyAI : MonoBehaviour
     public float teleportInterval = 50.0f, teleportIntervalElapsed = 0.0f;
     public bool canTeleport;
 
+    // Player Death
+    public bool isPlayerDead;
+    public string gameOverScreen;
+
     // Called to initialize variables before game start.
     private void Awake()
     {
@@ -48,8 +53,13 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         playerTransform = GameObject.Find("First Person Controller").transform;
+
+        isPlayerDead = Vector3.Distance(transform.position, playerTransform.position) < 2.0f;
         inPlayerPursuit = Physics.CheckSphere(transform.position, sightRange, playerMask);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerMask);
+
+        //if (isPlayerDead)
+        //    SceneManager.LoadScene(gameOverScreen);
 
         if (!canTeleport)
         {
