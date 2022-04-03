@@ -57,7 +57,11 @@ public class EnemyAI : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         teleportIntervalElapsed = 0.0f;
         isAttacking = false;
-        overworldTriggerFlag = overworldTriggerBox.GetComponent<TriggerFlag>();
+
+        if (overworldTriggerBox)
+        {
+            overworldTriggerFlag = overworldTriggerBox.GetComponent<TriggerFlag>();
+        }
     }
 
     // Update is called once per frame
