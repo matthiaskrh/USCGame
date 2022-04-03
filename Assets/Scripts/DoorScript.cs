@@ -13,7 +13,7 @@ public class DoorScript : MonoBehaviour
     public float openedAngle = -90;
     public float closedAngle = 0;
 
-    private bool isOpened = false;
+    public bool isOpened = false;
     private PlayerState playerState;
     public bool isUnhinged = false;
 
@@ -71,12 +71,12 @@ public class DoorScript : MonoBehaviour
 
     void OpenDoor(){
         isOpened = true;
-        pivot.transform.eulerAngles = new Vector3(pivot.transform.eulerAngles.x, openedAngle, pivot.transform.eulerAngles.z);
+        pivot.transform.localEulerAngles = new Vector3(pivot.transform.eulerAngles.x, openedAngle, pivot.transform.eulerAngles.z);
     }
 
     void CloseDoor(){
         isOpened = false;
-        pivot.transform.eulerAngles = new Vector3(pivot.transform.eulerAngles.x, closedAngle, pivot.transform.eulerAngles.z);
+        pivot.transform.localEulerAngles = new Vector3(pivot.transform.eulerAngles.x, closedAngle, pivot.transform.eulerAngles.z);
     }
 
     public void UnhingeDoor(){
