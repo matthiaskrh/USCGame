@@ -37,7 +37,6 @@ public class Portal : MonoBehaviour
     private void Start()
     {
         outlineRenderer.enabled = false;
-        // renderer.enabled = false;
         PlacePortal(wallCollider, transform.position, transform.rotation);
         SetColour(portalColour);
     }
