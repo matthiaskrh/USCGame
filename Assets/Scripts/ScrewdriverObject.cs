@@ -6,14 +6,15 @@ public class ScrewdriverObject : MonoBehaviour
 {
     public const string PLAYER_TAG = "Player";
     public bool claimable;
-    private Renderer renderer;
-    public PlayerState playerState;
+
+    public GameObject screwdriverSprite;
+    private SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
         claimable = true;
-        renderer = GetComponent<Renderer>();
+        spriteRenderer = screwdriverSprite.GetComponent<SpriteRenderer>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -22,7 +23,9 @@ public class ScrewdriverObject : MonoBehaviour
         if (claimable && other.tag == PLAYER_TAG)
         { // Will only teleport player, for now
             claimable = false;
-            renderer.enabled = false;
+            spriteRenderer.enabled = false;
+
+            PlayerState playerState = other.GetComponent<PlayerState>();
             playerState.AddScrewdriver();
         }
     }

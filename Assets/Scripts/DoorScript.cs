@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DoorScript : MonoBehaviour
 {
-
+    public const string PLAYER_TAG = "Player";
     public GameObject destinationObject;
     public GameObject interactSphere;
     private TriggerFlag triggerFlag;
@@ -14,33 +14,36 @@ public class DoorScript : MonoBehaviour
     public float closedAngle = 0;
 
     private bool isOpened = false;
+    private PlayerState playerState;
+    public bool isUnhinged = false;
 
-    public PlayerState playerState;
-    public bool unhinged = false;
-    public float disableTime = 5.0f;
-    public float elapsedDisableTime = 0.0f;
-    public bool isDisabling = false;
+    public GameObject unhingedPivot;
+
+    public GameObject doorColliderObject;
+    private MeshRenderer doorCollider;
 
     void Start()
     {
+        playerState = GameObject.FindGameObjectWithTag(PLAYER_TAG).GetComponent<PlayerState>();
         triggerFlag = interactSphere.GetComponent<TriggerFlag>();
+        doorCollider = doorColliderObject.GetComponent<MeshRenderer>();
         enemyTriggerFlag = interactSphere.GetComponent<EnemyTriggerFlag>();
-        elapsedDisableTime = 0.0f;
         OpenDoor(); // All doors start open
     }
 
     void Update()
     {
+        // Opening and closing door functionality
         bool canInteract = triggerFlag.getFlag();
         bool enemyCanInteract = triggerFlag.getFlag();
 
-        if (enemyCanInteract && !unhinged)
+        if (enemyCanInteract && !isUnhinged)
         {
             if (!isOpened)
                 OpenDoor();
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && canInteract && !unhinged)
+        if (Input.GetKeyDown(KeyCode.E) && canInteract && !isUnhinged)
         {
             if (isOpened)
             {
@@ -52,30 +55,10 @@ public class DoorScript : MonoBehaviour
             }
         }
 
-        else if (Input.GetKeyDown(KeyCode.T) && canInteract && !unhinged && playerState.hasScrewdriver &&
-                 !isOpened)
-        {
-            isDisabling = true;
+        // Unhinging
+        if(Input.GetKeyDown(KeyCode.R) && canInteract && !isUnhinged && playerState.hasScrewdriver){
+            UnhingeDoor();
         }
-
-        if (Input.GetKeyUp(KeyCode.T) && isDisabling)
-        {
-            isDisabling = false;
-        }
-
-        if (isDisabling)
-        {
-            if (elapsedDisableTime > disableTime)
-            {
-                unhinged = true;
-                isDisabling = false;
-                elapsedDisableTime = 0.0f;
-            }
-            else
-                elapsedDisableTime += Time.deltaTime;
-        }
-        else
-            elapsedDisableTime = 0.0f;
     }
 
     public bool getIsOpened(){
@@ -83,7 +66,7 @@ public class DoorScript : MonoBehaviour
     }
 
     public bool getIsUnhinged(){
-        return unhinged;
+        return isUnhinged;
     }
 
     void OpenDoor(){
@@ -94,6 +77,14 @@ public class DoorScript : MonoBehaviour
     void CloseDoor(){
         isOpened = false;
         pivot.transform.eulerAngles = new Vector3(pivot.transform.eulerAngles.x, closedAngle, pivot.transform.eulerAngles.z);
+    }
+
+    public void UnhingeDoor(){
+        isUnhinged = true;
+        pivot.transform.eulerAngles = new Vector3(pivot.transform.eulerAngles.x, closedAngle, pivot.transform.eulerAngles.z);
+        pivot.transform.position = unhingedPivot.transform.position;
+        pivot.transform.rotation = unhingedPivot.transform.rotation;
+        doorCollider.enabled = false;
     }
 
     
