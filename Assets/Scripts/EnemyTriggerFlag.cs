@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyTriggerFlag : MonoBehaviour
 {
-    public const string ENEMY_TAG = "Enemy";
+    public const string ENEMY_TAG = "Monster";
     private bool isTriggered = false;
 
     public bool getFlag()

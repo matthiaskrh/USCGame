@@ -15,7 +15,7 @@ public class EnemyAI : MonoBehaviour
 
     public bool isInOverworld;
     public GameObject overworldTriggerBox;
-    private TriggerFlag overworldTriggerFlag;
+    private EnemyTriggerFlag overworldTriggerFlag;
 
     // Doors
     public Transform[] overworldDoorTransforms;
@@ -60,7 +60,7 @@ public class EnemyAI : MonoBehaviour
 
         if (overworldTriggerBox)
         {
-            overworldTriggerFlag = overworldTriggerBox.GetComponent<TriggerFlag>();
+            overworldTriggerFlag = overworldTriggerBox.GetComponent<EnemyTriggerFlag>();
         }
     }
 
@@ -71,8 +71,6 @@ public class EnemyAI : MonoBehaviour
         {
             isInOverworld = overworldTriggerFlag.getFlag();
         }
-        
-        playerTransform = GameObject.Find("First Person Controller").transform;
 
         if (isInOverworld)
         {
@@ -134,6 +132,7 @@ public class EnemyAI : MonoBehaviour
             patrolPointSet = false;
             Attack();
         }
+        /*
         else if (playerState)
         {
             float playerDist = Vector3.Distance(transform.position, playerTransform.position);
@@ -158,6 +157,7 @@ public class EnemyAI : MonoBehaviour
                 ChasePlayer();
             }
         }
+        */
         else
         {
             patrolPointSet = false;
