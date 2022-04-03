@@ -8,6 +8,10 @@ TagManager:
   - Overworld
   - Underworld
   - Enemy
+  - Door
+  - Monster
+  - Portal Camera
+  - Portal
   layers:
   - Default
   - TransparentFX
