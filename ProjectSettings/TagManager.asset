@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Screwdriver
+  - Door
+  - Monster
+  - Portal Camera
   layers:
   - Default
   - TransparentFX
