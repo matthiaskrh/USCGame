@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: dddd23f544993334396bb3f5555c25d7
+  - enabled: 1
+    path: Assets/Scenes/GameWorld-Shravan.unity
+    guid: 9296087bd272f154abce566557e5ca3e
+  - enabled: 1
+    path: Assets/Scenes/MainScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 3624cb1af8f0a384d82fea925924fb41
+  - enabled: 1
+    path: Assets/Scenes/WinScreen.unity
+    guid: aa920d9547186854ca1348ecc10116e5
+  m_configObjects: {}
