@@ -47,6 +47,10 @@ PrefabInstance:
       propertyPath: otherPortal
       value: 
       objectReference: {fileID: 435283336557915239}
+    - target: {fileID: 634234088990457275, guid: c9426aeca7ea44024ae112341849e97e, type: 3}
+      propertyPath: door2
+      value: 
+      objectReference: {fileID: 435283336585893998}
     - target: {fileID: 634234089000339888, guid: c9426aeca7ea44024ae112341849e97e, type: 3}
       propertyPath: m_Name
       value: Doorway With Frame B
@@ -97,6 +101,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9426aeca7ea44024ae112341849e97e, type: 3}
+--- !u!1 &7349239951664950 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 634234089000339888, guid: c9426aeca7ea44024ae112341849e97e, type: 3}
+  m_PrefabInstance: {fileID: 637079660605156998}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7349239951664948 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 634234089000339890, guid: c9426aeca7ea44024ae112341849e97e, type: 3}
@@ -128,6 +137,10 @@ PrefabInstance:
       propertyPath: otherPortal
       value: 
       objectReference: {fileID: 7349239961555775}
+    - target: {fileID: 634234088990457275, guid: c9426aeca7ea44024ae112341849e97e, type: 3}
+      propertyPath: door2
+      value: 
+      objectReference: {fileID: 7349239951664950}
     - target: {fileID: 634234089000339888, guid: c9426aeca7ea44024ae112341849e97e, type: 3}
       propertyPath: m_Name
       value: Doorway With Frame A
@@ -178,6 +191,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9426aeca7ea44024ae112341849e97e, type: 3}
+--- !u!1 &435283336585893998 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 634234089000339888, guid: c9426aeca7ea44024ae112341849e97e, type: 3}
+  m_PrefabInstance: {fileID: 1064871961803772382}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &435283336585893996 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 634234089000339890, guid: c9426aeca7ea44024ae112341849e97e, type: 3}
