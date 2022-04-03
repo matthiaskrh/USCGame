@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -623,6 +623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2b55f5948194c145a80cb3654e2deb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   agent: {fileID: 470889047}
   playerTransform: {fileID: 1089753401}
   groundMask:
@@ -631,8 +632,23 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 64
+  patrolSpeed: 3
+  pursuitSpeed: 4
+  attackSpeed: 8
   patrolPointRange: 5
+  patrolPointSet: 0
   sightRange: 20
+  attackLocation: {x: 0, y: 0, z: 0}
+  attackDirection: {x: 0, y: 0, z: 0}
+  attackRange: 5
+  attackDistance: 10
+  attackTime: 3
+  attackTimeElapsed: 0
+  playerInAttackRange: 0
+  isAttacking: 0
+  teleportInterval: 50
+  intervalTimeElapsed: 0
+  canTeleport: 0
 --- !u!195 &470889047
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1060,7 +1076,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &803365523
 Transform:
   m_ObjectHideFlags: 0
@@ -1165,7 +1181,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1018084577
 Transform:
   m_ObjectHideFlags: 0
