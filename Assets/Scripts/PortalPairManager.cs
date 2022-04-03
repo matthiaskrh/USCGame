@@ -12,10 +12,10 @@ public class PortalPairManager : MonoBehaviour
     // Target
     public GameObject door2;
 
-    public DoorScript door1script;
-    public DoorScript door2script;
+    private DoorScript door1script;
+    private DoorScript door2script;
 
-    public Portal portal1script;
+    private Portal portal1script;
 
 
     void Start(){
@@ -40,10 +40,15 @@ public class PortalPairManager : MonoBehaviour
     }
 
     // Should portal be active
-    bool isPortalActive(){
+    public bool isPortalActive(){
         return isDoorValidEntrance(door1script) && isDoorValidTarget(door2script);
     }
 
+
+    // If at least one door is unhinged
+    public bool isPortalDisabled(){
+        return door1script.getIsUnhinged() || door2script.getIsUnhinged();
+    }
 
     bool isDoorValidTarget(DoorScript doorScript){
         return doorScript.getIsOpened() && !doorScript.getIsUnhinged();
