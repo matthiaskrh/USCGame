@@ -26,8 +26,8 @@ public class DoorScript : MonoBehaviour
     {
         playerState = GameObject.FindGameObjectWithTag(PLAYER_TAG).GetComponent<PlayerState>();
         triggerFlag = interactSphere.GetComponent<TriggerFlag>();
-        doorCollider = doorColliderObject.GetComponent<MeshRenderer>();
         enemyTriggerFlag = interactSphere.GetComponent<EnemyTriggerFlag>();
+        doorCollider = doorColliderObject.GetComponent<MeshRenderer>();
         OpenDoor(); // All doors start open
     }
 

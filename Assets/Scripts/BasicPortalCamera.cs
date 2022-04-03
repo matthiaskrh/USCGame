@@ -20,6 +20,8 @@ public class BasicPortalCamera : MonoBehaviour
     private const int maskID1 = 1;
     private const int maskID2 = 2;
 
+    private GameObject[] closestPortals;
+
     private void Awake()
     {
         mainCamera = GetComponent<Camera>();
@@ -32,6 +34,11 @@ public class BasicPortalCamera : MonoBehaviour
     {
         portals[0].SetMaskID(maskID1);
         portals[1].SetMaskID(maskID2);
+        closestPortals=GameObject.FindGameObjectsWithTag("Portal");
+    }
+
+    private void Update(){
+        findClosestPortal();
     }
 
     public void setPortals(Portal prt0, Portal prt1){
@@ -48,6 +55,26 @@ public class BasicPortalCamera : MonoBehaviour
     public void setPortalsEnable(bool isEnabled){
         portals[0].setEnable(isEnabled);
         portals[1].setEnable(isEnabled);
+    }
+
+    private void findClosestPortal(){
+        GameObject closest = null;
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+        foreach (GameObject go in closestPortals)
+        {
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
+            {
+                closest = go;
+                distance = curDistance;
+            }
+        }
+        Portal prt1  = closest.GetComponent<Portal>();
+        Portal prt2 = prt1.GetOtherPortal();
+
+        setPortals(prt1,prt2);
     }
 
     private void OnRenderImage(RenderTexture src, RenderTexture dst)

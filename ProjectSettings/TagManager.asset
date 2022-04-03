@@ -12,6 +12,7 @@ TagManager:
   - Monster
   - Portal Camera
   - Music Source
+  - Portal
   layers:
   - Default
   - TransparentFX
