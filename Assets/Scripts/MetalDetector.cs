@@ -78,7 +78,7 @@ public class MetalDetector : MonoBehaviour
 
         float ratio = (maxDist - minDist) / maxDist;
         float pitchRatio = (maxPitchDist - Mathf.Min(maxPitchDist, minDist)) / maxPitchDist;
-        beepAudioSource.volume = ratio * maxVolume; // Square to not have full volume all the time
+        beepAudioSource.volume = ratio * ratio * maxVolume; // Square to not have full volume all the time
         beepAudioSource.pitch = 1 + pitchRatio * 2; // Range from 1 to 3
         
     }
