@@ -12,11 +12,18 @@ public class EnemyAI : MonoBehaviour
     // Patrolling
     Vector3 patrolPoint;
     public float patrolPointRange;
-    bool patrolPointSet;
+    public bool patrolPointSet;
 
     // Stalking
     public float sightRange;
-    bool playerInRange;
+    bool inPlayerPursuit;
+
+    // Attacking
+    public float attackSpeed, attackRange;
+    public bool playerInAttackRange;
+
+    // Teleporting
+    public bool canTeleport;
 
     // Called to initialize variables before game start.
     private void Awake()
@@ -34,9 +41,9 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         playerTransform = GameObject.Find("First Person Controller").transform;
-        playerInRange = Physics.CheckSphere(transform.position, sightRange, playerMask);
+        inPlayerPursuit = Physics.CheckSphere(transform.position, sightRange, playerMask);
 
-        if (playerInRange)
+        if (inPlayerPursuit)
         {
             Debug.Log("Chasing Player");
             ChasePlayer();
@@ -47,12 +54,14 @@ public class EnemyAI : MonoBehaviour
 
     void FindPatrolPoint()
     {
-        float randZ = Random.Range(-patrolPointRange, patrolPointRange);
-        float randX = Random.Range(-patrolPointRange, patrolPointRange);
+        Vector3 randPositionOffset = Random.insideUnitSphere * patrolPointRange;
+        Vector3 point = transform.position + randPositionOffset;
+        NavMeshHit hit;
 
-        patrolPoint = new Vector3(transform.position.x + randX, transform.position.y, transform.position.z + randZ);
+        NavMesh.SamplePosition(point, out hit, patrolPointRange, NavMesh.AllAreas);
+        patrolPoint = hit.position;
 
-        if (Physics.Raycast(patrolPoint, -transform.up, 2f, groundMask))
+        if (Physics.Raycast(patrolPoint, -transform.up, 2f, 1))
             patrolPointSet = true;
     }
 
@@ -66,9 +75,8 @@ public class EnemyAI : MonoBehaviour
 
         float distanceToDestination = (transform.position - patrolPoint).magnitude;
 
-        if (distanceToDestination < 1f)
+        if (distanceToDestination <= 2f)
             patrolPointSet = false;
-
     }
 
     void ChasePlayer()
