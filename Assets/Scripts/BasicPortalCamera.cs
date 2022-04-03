@@ -32,6 +32,7 @@ public class BasicPortalCamera : MonoBehaviour
     {
         portals[0].SetMaskID(maskID1);
         portals[1].SetMaskID(maskID2);
+        setPortalsEnable(true);
     }
 
     public void setPortals(Portal prt0, Portal prt1){
