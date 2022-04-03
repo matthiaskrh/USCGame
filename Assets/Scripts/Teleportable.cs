@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Teleportable : MonoBehaviour
+public class Teleportable : PortalableObject
 {
-    // Start is called before the first frame update
-    void Start()
+   protected override void Awake()
     {
-        
+        base.Awake();
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Warp()
     {
-        
+        base.Warp();
+
     }
 
 }
