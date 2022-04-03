@@ -221,6 +221,10 @@ GameObject:
   - component: {fileID: 5875355837092149883}
   - component: {fileID: 5875355837092149882}
   - component: {fileID: 5875355837092149885}
+<<<<<<< HEAD
+=======
+  - component: {fileID: 8248855750720713775}
+>>>>>>> 6f3ece7011581bef3951ca72143366d2261f341a
   m_Layer: 0
   m_Name: InteractSphere
   m_TagString: Untagged
@@ -268,6 +272,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c15077f959a911408341ce48e5fd921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+=======
+--- !u!114 &8248855750720713775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5875355837092149880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08d802a7231d84949b0ae961ba266b08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+>>>>>>> 6f3ece7011581bef3951ca72143366d2261f341a
 --- !u!1 &5875355837519483440
 GameObject:
   m_ObjectHideFlags: 0

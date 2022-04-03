@@ -22,13 +22,19 @@ public class PlayerState : MonoBehaviour
     {
         screwdriverSpriteRenderer = heldScrewdriverSprite.GetComponent<SpriteRenderer>();
         RemoveScrewdriver(); // Default state is no screwdriver
-        overworldTriggerFlag = overworldTriggerBox.GetComponent<TriggerFlag>();
+        if (overworldTriggerBox)
+        {
+            overworldTriggerFlag = overworldTriggerBox.GetComponent<TriggerFlag>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        isInOverworld = overworldTriggerFlag.getFlag();
+        if (overworldTriggerFlag)
+        {
+            isInOverworld = overworldTriggerFlag.getFlag();
+        }
 
         if (isInOverworld)
         {
