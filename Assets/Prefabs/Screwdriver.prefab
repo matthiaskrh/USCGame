@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   claimable: 1
-  playerState: {fileID: 0}
+  screwdriverSprite: {fileID: 1129733830300488632}
 --- !u!1 &1129733830300488632
 GameObject:
   m_ObjectHideFlags: 0
