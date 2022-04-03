@@ -29,7 +29,7 @@ Transform:
   m_Children:
   - {fileID: 1717082345709689201}
   m_Father: {fileID: 634234089000339890}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &634234088990457220
 GameObject:
@@ -66,7 +66,7 @@ Transform:
   - {fileID: 5240767898413988252}
   - {fileID: 5240767900411491591}
   m_Father: {fileID: 634234089000339890}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &634234088990457240
 MeshFilter:
@@ -195,6 +195,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 3699377912148572632}
   - {fileID: 634234088698136130}
   - {fileID: 634234090420383242}
   - {fileID: 5240767900175664140}
@@ -220,11 +221,9 @@ MonoBehaviour:
   pivot: {fileID: 634234088698136129}
   openedAngle: -90
   closedAngle: 0
-  playerState: {fileID: 0}
-  unhinged: 0
-  disableTime: 5
-  elapsedDisableTime: 0
-  isDisabling: 0
+  isUnhinged: 0
+  unhingedPivot: {fileID: 5523723499786885741}
+  doorColliderObject: {fileID: 634234089433942333}
 --- !u!1 &634234089433942333
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,6 +413,7 @@ GameObject:
   - component: {fileID: 634234090420383242}
   - component: {fileID: 634234090420383243}
   - component: {fileID: 634234090420383244}
+  - component: {fileID: 3889484990836567058}
   m_Layer: 0
   m_Name: InteractSphere
   m_TagString: Untagged
@@ -433,7 +433,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 634234089000339890}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &634234090420383243
 CapsuleCollider:
@@ -459,6 +459,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c15077f959a911408341ce48e5fd921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3889484990836567058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634234090420383241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08d802a7231d84949b0ae961ba266b08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1717082345709689203
@@ -892,7 +904,7 @@ Transform:
   - {fileID: 5240767900374566855}
   - {fileID: 5240767900184139687}
   m_Father: {fileID: 634234089000339890}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5240767900175664141
 GameObject:
@@ -922,7 +934,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 634234089000339890}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &5240767900184139680
 GameObject:
@@ -1168,3 +1180,33 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4493585093827132993, guid: 2d4e84014ecae4b798c3038c43b73470, type: 3}
+--- !u!1 &5523723499786885741
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3699377912148572632}
+  m_Layer: 0
+  m_Name: Unhinged Pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3699377912148572632
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5523723499786885741}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
+  m_LocalPosition: {x: -0.6799927, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 634234089000339890}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 90, y: 180, z: 0}

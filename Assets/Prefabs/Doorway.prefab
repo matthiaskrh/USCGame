@@ -221,11 +221,6 @@ GameObject:
   - component: {fileID: 5875355837092149883}
   - component: {fileID: 5875355837092149882}
   - component: {fileID: 5875355837092149885}
-<<<<<<< HEAD
-  - component: {fileID: 7663259178361845966}
-=======
-  - component: {fileID: 8248855750720713775}
->>>>>>> d7f5cefc4ee2122257e9f48dbbf2914e50a1ddd3
   m_Layer: 0
   m_Name: InteractSphere
   m_TagString: Untagged
@@ -271,22 +266,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c15077f959a911408341ce48e5fd921, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-<<<<<<< HEAD
---- !u!114 &7663259178361845966
-=======
---- !u!114 &8248855750720713775
->>>>>>> d7f5cefc4ee2122257e9f48dbbf2914e50a1ddd3
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5875355837092149880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08d802a7231d84949b0ae961ba266b08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5875355837519483440
@@ -366,14 +345,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88fc7135df549d14f94faa1be5dab143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationObject: {fileID: 0}
   interactSphere: {fileID: 5875355837092149880}
   pivot: {fileID: 5875355837519483440}
   openedAngle: -90
   closedAngle: 0
-  isUnhinged: 0
-  unhingedPivot: {fileID: 0}
-  doorColliderObject: {fileID: 0}
 --- !u!1 &5875355837843515893
 GameObject:
   m_ObjectHideFlags: 0
